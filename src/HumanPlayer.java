@@ -9,7 +9,7 @@ class HumanPlayer extends Player {
     @Override
     public int makeGuess() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print(name + ", ingresa tu suposición: ");
+        System.out.print(name + ", enter the guess: ");
         int guess = scanner.nextInt();
         guesses.add(guess);
         return guess;

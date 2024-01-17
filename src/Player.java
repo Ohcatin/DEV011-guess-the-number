@@ -10,15 +10,15 @@ abstract class Player {
         this.guesses = new ArrayList<>();
     }
 
-    // Método abstracto para hacer una suposición
+    // Método abstracto
     public abstract int makeGuess();
 
-    // Getter para obtener el nombre de la jugadora
+    // nombre
     public String getName() {
         return name;
     }
 
-    // Getter para obtener el historial de suposiciones
+    // historial
     public List<Integer> getGuesses() {
         return guesses;
     }

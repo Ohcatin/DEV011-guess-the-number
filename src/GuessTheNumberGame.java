@@ -7,53 +7,61 @@ public class GuessTheNumberGame {
         Scanner scanner = new Scanner(System.in);
 
         // Crear objetos de jugador humano y computadora
-        Player humanPlayer = new HumanPlayer("Jugador Humano");
-        Player computerPlayer = new ComputerPlayer("Computadora");
+        Player humanPlayer = new HumanPlayer("Player");
+        Player computerPlayer = new ComputerPlayer("Computer player");
 
-        // Generar un número aleatorio entre 1 y 100
+        // Aquí se genera el número 1 al 100
         int targetNumber = generateRandomNumber();
 
-        System.out.println("Bienvenido al juego de adivinar el número!");
-        System.out.println("He seleccionado un número entre 1 y 100. ¡Adivina!");
+        System.out.println("Welcome to the guess the number game!");
+        System.out.println("I have selected a number between 1 and 100. Guess!");
 
-        while (true) {
-            // Adivinanza del jugador humano
-            int userGuess = humanPlayer.makeGuess();
+        boolean gameWon = false;
 
-            if (userGuess == targetNumber) {
-                System.out.println("¡Felicidades! ¡Has adivinado el número correctamente!");
+        while (!gameWon) {
+            // Turno de player
+            gameWon = checkGuess(humanPlayer, targetNumber);
+
+            // Verificar si el juego ha terminado después del intento de player
+            if (gameWon) {
                 break;
-            } else {
-                displayHint(userGuess, targetNumber);
             }
 
-            // Adivinanza de la computadora
-            int computerGuess = computerPlayer.makeGuess();
-
-            System.out.println("La computadora adivina: " + computerGuess);
-
-            if (computerGuess == targetNumber) {
-                System.out.println("¡La computadora ha adivinado el número correctamente!");
-                break;
-            } else {
-                displayHint(computerGuess, targetNumber);
-            }
+            // Turno de computer
+            gameWon = checkGuess(computerPlayer, targetNumber);
         }
 
         scanner.close();
     }
 
-    // Genera un número aleatorio entre 1 y 100
     private static int generateRandomNumber() {
         return new Random().nextInt(100) + 1;
     }
 
-    // Muestra una pista basada en la adivinanza
+    protected static boolean checkGuess(Player player, int targetNumber) {
+        int playerGuess = player.makeGuess();
+        System.out.println(player.getName() + " enter you guess: " + playerGuess);
+
+        if (playerGuess == targetNumber) {
+            System.out.println("Congratulations! " + player.getName() + " you guessed the number");
+            displayGuesses(player);
+            return true; // juego ganado
+        } else {
+            displayHint(playerGuess, targetNumber);
+            return false; // juego sigue
+        }
+    }
+
     private static void displayHint(int guess, int target) {
         if (guess < target) {
-            System.out.println("Demasiado bajo. Intenta de nuevo.");
+            System.out.println("Too low");
         } else {
-            System.out.println("Demasiado alto. Intenta de nuevo.");
+            System.out.println("Too high");
         }
+    }
+
+    private static void displayGuesses(Player player) {
+        System.out.println(player.getName() + " has these attempts: " + player.getGuesses());
+        System.out.println("Total attempts: " + player.getGuesses().size());
     }
 }
