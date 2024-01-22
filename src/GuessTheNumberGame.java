@@ -6,11 +6,10 @@ public class GuessTheNumberGame {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Crear objetos de jugador humano y computadora
+        // Objetos
         Player humanPlayer = new HumanPlayer("Player");
         Player computerPlayer = new ComputerPlayer("Computer player");
 
-        // Aquí se genera el número 1 al 100
         int targetNumber = generateRandomNumber();
 
         System.out.println("Welcome to the guess the number game!");
@@ -22,7 +21,7 @@ public class GuessTheNumberGame {
             // Turno de player
             gameWon = checkGuess(humanPlayer, targetNumber);
 
-            // Verificar si el juego ha terminado después del intento de player
+            // Verificar si ha terminado el juego
             if (gameWon) {
                 break;
             }
