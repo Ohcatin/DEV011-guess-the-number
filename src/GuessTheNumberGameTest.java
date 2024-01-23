@@ -3,6 +3,7 @@ import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class GuessTheNumberGameTest {
 
@@ -42,4 +43,8 @@ public class GuessTheNumberGameTest {
         Mockito.verify(player, Mockito.times(1)).getName();
         Mockito.verify(player, Mockito.times(1)).makeGuess();
     }
+        @Test
+        public void test() {
+            assertEquals(1,1);
+        }
 }

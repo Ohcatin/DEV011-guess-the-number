@@ -5,9 +5,10 @@ public class GuessTheNumberGame {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
+        System.out.print("Enter your name: ");
+        String playerName = scanner.nextLine();
         // Objetos
-        Player humanPlayer = new HumanPlayer("Player");
+        Player humanPlayer = new HumanPlayer(playerName);
         Player computerPlayer = new ComputerPlayer("Computer player");
 
         int targetNumber = generateRandomNumber();

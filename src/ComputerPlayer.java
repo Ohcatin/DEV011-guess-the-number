@@ -8,6 +8,7 @@ class ComputerPlayer extends Player {
     @Override
     public int makeGuess() {
         int guess = new Random().nextInt(100) + 1;
+        System.out.println("––– Round: Computer Player –––");
         guesses.add(guess);
         return guess;
     }
